@@ -1,0 +1,51 @@
+# Render.com Blueprint for Queen Terry Store
+# https://render.com/docs/blueprint-spec
+#
+# Deploys a single Node.js web service that runs the Express API and serves
+# the built React storefront (client/dist). MongoDB is NOT provisioned by
+# Render - set MONGODB_URI to a MongoDB Atlas (or other) connection string
+# in the Render dashboard before the first deploy.
+services:
+  - type: web
+    name: queen-terry-store
+    env: node
+    rootDir: .
+    # Install root/server/client dependencies, then build the Vite client
+    buildCommand: npm run install:all && npm run build
+    # Express serves the API plus the built client with SPA fallback
+    startCommand: NODE_ENV=production npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      # Required: MongoDB connection string (e.g. MongoDB Atlas). Set in the Render dashboard.
+      - key: MONGODB_URI
+        sync: false
+      # Generated secret for JWT signing. Copy it from the Render dashboard after creation.
+      - key: JWT_SECRET
+        generate: true
+      # Generated admin password. Override in the Render dashboard if you want a known password.
+      - key: ADMIN_PASSWORD
+        generate: true
+      - key: ADMIN_NAME
+        value: Queen Terry Admin
+      - key: ADMIN_EMAIL
+        value: admin@queenterry.test
+      - key: ADMIN_PHONE
+        value: 09025068558
+      - key: WHATSAPP_NUMBER
+        value: 2349025068558
+      # Public URL of this service; update if your Render service name differs
+      - key: CLIENT_ORIGIN
+        value: https://queen-terry-store.onrender.com
+      # Seed demo products on first boot when the catalogue is empty
+      - key: SEED_DEMO
+        value: true
+    # Persistent disk for uploaded product images (server/uploads).
+    # Render's filesystem is ephemeral, so uploads are lost on every deploy without this.
+    disk:
+      name: queen-terry-uploads
+      mountPath: /opt/render/project/src/server/uploads
+      sizeGB: 1
