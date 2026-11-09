@@ -20,15 +20,15 @@ services:
         value: production
       - key: JWT_EXPIRES_IN
         value: 7d
-      # Required: MongoDB connection string (e.g. MongoDB Atlas). Set in the Render dashboard.
+      # MongoDB Atlas connection string for the Queen Terry store database.
       - key: MONGODB_URI
-        sync: false
-      # Generated secret for JWT signing. Copy it from the Render dashboard after creation.
+        value: mongodb+srv://okorochukwuebuka34_db_user:6jZZCWAb9wpVYoG2@cluster0.e7jqchd.mongodb.net
+      # Secret used to sign JWT auth cookies. Set a long random string in the Render dashboard before the first deploy.
       - key: JWT_SECRET
-        generate: true
-      # Generated admin password. Override in the Render dashboard if you want a known password.
+        value: change-me-in-render-dashboard
+      # Admin account password. Override in the Render dashboard if you want a known password.
       - key: ADMIN_PASSWORD
-        generate: true
+        value: ChangeMe123!
       - key: ADMIN_NAME
         value: Queen Terry Admin
       - key: ADMIN_EMAIL
@@ -37,9 +37,16 @@ services:
         value: 09025068558
       - key: WHATSAPP_NUMBER
         value: 2349025068558
-      # Public URL of this service; update if your Render service name differs
+      # Cloudinary (product image uploads)
+      - key: CLOUDINARY_CLOUD_NAME
+        value: b1gfrg0t
+      - key: CLOUDINARY_API_KEY
+        value: 449693945192121
+      - key: CLOUDINARY_API_SECRET
+        value: orlVE6ILah2LG9vwDBjCpv0Hr2o
+      # Public URL of the storefront (Vercel). Update if your deployment URL differs.
       - key: CLIENT_ORIGIN
-        value: https://queen-terry-store.onrender.com
+        value: https://queenterry.vercel.app
       # Seed demo products on first boot when the catalogue is empty
       - key: SEED_DEMO
         value: true
