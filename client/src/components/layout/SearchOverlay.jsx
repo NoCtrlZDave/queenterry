@@ -91,7 +91,7 @@ export default function SearchOverlay({ open, onClose }) {
         >
           <div className="border-b border-line">
             <div className="shell flex h-16 items-center gap-4 sm:h-20">
-              <div className="flex flex-1 items-center gap-3 rounded-full bg-mist px-4 py-3">
+              <div className="flex min-w-0 flex-1 items-center gap-3 rounded-full bg-mist px-4 py-3">
                 <Search className="h-5 w-5 shrink-0 text-smoke" />
                 <input
                   ref={inputRef}
@@ -126,7 +126,7 @@ export default function SearchOverlay({ open, onClose }) {
             </div>
           </div>
 
-          <div className="shell max-h-[calc(100vh-5rem)] overflow-y-auto py-8">
+          <div className="overlay-scroll shell py-8">
             {debounced.trim().length >= 2 ? (
               <div>
                 <div className="flex items-center justify-between">
@@ -164,7 +164,7 @@ export default function SearchOverlay({ open, onClose }) {
                           <p className="truncate text-sm font-semibold text-ink">{product.name}</p>
                           <p className="text-xs text-smoke">{product.brand?.name}</p>
                         </div>
-                        <span className="text-sm font-semibold text-ink">
+                        <span className="shrink-0 text-sm font-semibold text-ink">
                           {formatNaira(product.price)}
                         </span>
                       </Link>

@@ -14,7 +14,7 @@ export default function ProductRail({ products = [], loading = false, skeletonCo
     <div className="relative">
       <div
         ref={scroller}
-        className="hide-scrollbar -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 sm:mx-0 sm:gap-6 sm:px-0"
+        className="hide-scrollbar scroll-x-touch -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain px-5 pb-2 sm:mx-0 sm:gap-6 sm:px-0"
       >
         {loading
           ? Array.from({ length: skeletonCount }).map((_, index) => (

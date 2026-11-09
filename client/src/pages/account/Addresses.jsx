@@ -94,14 +94,14 @@ export default function Addresses() {
 
   return (
     <div className="space-y-5">
-      <div className="flex items-end justify-between gap-3">
+      <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h2 className="font-display text-xl font-semibold text-ink">Delivery addresses</h2>
           <p className="mt-1 text-xs text-smoke">
             Saved addresses autofill your checkout details.
           </p>
         </div>
-        <button type="button" onClick={startAdd} className="btn-primary text-xs">
+        <button type="button" onClick={startAdd} className="btn-primary shrink-0 text-xs">
           <Plus className="h-4 w-4" />
           Add address
         </button>
@@ -122,8 +122,8 @@ export default function Addresses() {
                   <span className="grid h-8 w-8 place-items-center rounded-full bg-mist text-ink">
                     <MapPin className="h-4 w-4" />
                   </span>
-                  <div>
-                    <p className="text-sm font-semibold text-ink">{address.label}</p>
+                  <div className="min-w-0">
+                    <p className="break-words text-sm font-semibold text-ink">{address.label}</p>
                     {address.isDefault && (
                       <span className="mt-1 inline-flex items-center gap-1 rounded-full bg-accent-50 px-2 py-0.5 text-[9px] font-semibold text-accent">
                         <Star className="h-2.5 w-2.5" /> Default
@@ -156,7 +156,7 @@ export default function Addresses() {
                 </div>
               </div>
 
-              <p className="mt-4 flex-1 text-xs leading-relaxed text-smoke">
+              <p className="mt-4 flex-1 break-words text-xs leading-relaxed text-smoke">
                 {address.street}
                 <br />
                 {address.city}, {address.state}

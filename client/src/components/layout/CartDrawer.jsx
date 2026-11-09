@@ -48,7 +48,7 @@ export default function CartDrawer() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-white"
+            className="h-dvh-safe absolute right-0 top-0 flex w-full max-w-md flex-col bg-white pr-[env(safe-area-inset-right)]"
           >
             <div className="flex items-center justify-between border-b border-line px-5 py-4">
               <div>
@@ -68,7 +68,7 @@ export default function CartDrawer() {
             </div>
 
             {items.length === 0 ? (
-              <div className="flex flex-1 flex-col items-center justify-center px-8 text-center">
+              <div className="flex flex-1 flex-col items-center justify-center overflow-y-auto px-8 py-8 text-center">
                 <span className="grid h-16 w-16 place-items-center rounded-2xl bg-mist text-accent">
                   <ShoppingBag className="h-7 w-7" />
                 </span>
@@ -82,7 +82,7 @@ export default function CartDrawer() {
               </div>
             ) : (
               <>
-                <div className="flex-1 overflow-y-auto px-5 py-4">
+                <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-4">
                   <div className="space-y-4">
                     {items.map((item) => (
                       <div
@@ -143,7 +143,7 @@ export default function CartDrawer() {
                   </div>
                 </div>
 
-                <div className="border-t border-line bg-cloud px-5 py-5">
+                <div className="border-t border-line bg-cloud px-5 py-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-smoke">Subtotal</span>
                     <span className="font-display text-xl font-semibold text-ink">

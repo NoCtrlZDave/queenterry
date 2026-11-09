@@ -52,7 +52,7 @@ export default function AccountLayout() {
       </div>
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[260px_1fr] lg:gap-10">
-        <aside className="lg:sticky lg:top-24 lg:self-start">
+        <aside className="sticky-lg-safe">
           <div className="flex items-center gap-3 rounded-2xl border border-line p-4">
             <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-ink text-sm font-bold text-white">
               {initials(user?.name)}
@@ -63,7 +63,7 @@ export default function AccountLayout() {
             </div>
           </div>
 
-          <nav className="mt-3 flex gap-1 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible">
+          <nav className="hide-scrollbar scroll-x-touch mt-3 flex gap-1 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible">
             {links.map(({ to, label, icon: Icon, end }) => (
               <NavLink
                 key={to}

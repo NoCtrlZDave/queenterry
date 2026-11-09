@@ -327,7 +327,7 @@ export default function Checkout() {
           </p>
         </div>
 
-        <div className="space-y-4 lg:sticky lg:top-24 lg:self-start">
+        <div className="sticky-lg-safe space-y-4">
           <OrderSummary items={items} subtotal={subtotal} title="Your order" />
           <div className="rounded-2xl border border-line bg-white p-4 text-[11px] leading-relaxed text-smoke">
             <p className="font-semibold text-ink">What happens next?</p>

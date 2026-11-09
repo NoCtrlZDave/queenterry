@@ -476,7 +476,7 @@ export default function AdminProductForm() {
                         ),
                       }))
                     }
-                    className="input flex-1"
+                    className="input min-w-0 flex-1"
                     placeholder="Colour name"
                   />
                   <input
@@ -528,7 +528,7 @@ export default function AdminProductForm() {
                         ),
                       }))
                     }
-                    className="input flex-1"
+                    className="input min-w-0 flex-1"
                     placeholder="Label (e.g. Display)"
                   />
                   <input
@@ -541,7 +541,7 @@ export default function AdminProductForm() {
                         ),
                       }))
                     }
-                    className="input flex-[1.4]"
+                    className="input min-w-0 flex-[1.4]"
                     placeholder="Value"
                   />
                   <button
@@ -566,7 +566,7 @@ export default function AdminProductForm() {
           </Section>
         </div>
 
-        <div className="space-y-5 xl:sticky xl:top-6 xl:self-start">
+        <div className="sticky-xl-safe space-y-5">
           <Section title="Visibility">
             <div className="space-y-4">
               <label className="flex cursor-pointer items-start gap-3 text-xs leading-relaxed text-smoke">

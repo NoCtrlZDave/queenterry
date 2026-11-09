@@ -44,7 +44,7 @@ export default function Modal({ open, onClose, title, children, className = '', 
             exit={{ y: 20, opacity: 0 }}
             transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
             className={cn(
-              'relative z-10 w-full max-w-lg rounded-t-3xl bg-white p-6 shadow-lift sm:rounded-3xl',
+              'modal-panel-scroll relative z-10 w-full max-w-lg rounded-t-3xl bg-white p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] shadow-lift sm:rounded-3xl sm:pb-6',
               panelClassName
             )}
           >

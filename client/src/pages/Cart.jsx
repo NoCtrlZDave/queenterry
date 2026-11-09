@@ -109,7 +109,7 @@ export default function Cart() {
           ))}
         </div>
 
-        <div className="space-y-4 lg:sticky lg:top-24 lg:self-start">
+        <div className="sticky-lg-safe space-y-4">
           <OrderSummary items={items} subtotal={subtotal}>
             <Link to="/checkout" className="btn-accent mt-5 w-full">
               <MessageCircle className="h-4 w-4" />

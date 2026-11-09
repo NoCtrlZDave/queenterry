@@ -62,8 +62,8 @@ export default function AdminLayout() {
   };
 
   return (
-    <div className="flex min-h-screen bg-mist">
-      <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col bg-ink p-5 text-white lg:flex">
+    <div className="flex min-h-dvh-safe bg-mist">
+      <aside className="sticky top-0 hidden h-dvh-safe w-64 shrink-0 flex-col overflow-y-auto bg-ink p-5 text-white lg:flex">
         <Logo variant="light" compact />
         <p className="mt-1.5 pl-[50px] text-[9px] font-semibold uppercase tracking-[0.2em] text-white/40">
           Admin console
@@ -131,7 +131,7 @@ export default function AdminLayout() {
               onClick={() => setMenuOpen(false)}
               aria-hidden="true"
             />
-            <div className="absolute inset-y-0 left-0 w-72 bg-ink p-5 text-white">
+            <div className="absolute inset-y-0 left-0 w-[85%] max-w-xs overflow-y-auto bg-ink p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] pl-[calc(1.25rem+env(safe-area-inset-left))] text-white">
               <div className="flex items-center justify-between">
                 <Logo variant="light" compact />
                 <button

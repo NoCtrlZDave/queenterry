@@ -108,7 +108,7 @@ export default function AdminOrders() {
         </div>
       ) : (
         <div className="overflow-hidden rounded-2xl border border-line bg-white">
-          <div className="overflow-x-auto">
+          <div className="scroll-x-touch overflow-x-auto">
             <table className="w-full min-w-[820px] text-left text-xs">
               <thead>
                 <tr className="border-b border-line bg-cloud text-[10px] uppercase tracking-[0.12em] text-smoke">

@@ -17,7 +17,7 @@ export default function WhatsAppFloat() {
       )}
       target="_blank"
       rel="noreferrer"
-      className="fixed bottom-20 right-4 z-40 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-xs font-semibold text-ink shadow-soft transition hover:brightness-105 lg:bottom-6 lg:right-6 lg:px-5 lg:py-3.5 lg:text-sm"
+      className="fixed bottom-20 right-4 z-40 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-xs font-semibold text-ink shadow-soft transition hover:brightness-105 xl:bottom-6 xl:right-6 xl:px-5 xl:py-3.5 xl:text-sm"
       aria-label="Chat with Queen Terry on WhatsApp"
     >
       <MessageCircle className="h-5 w-5" />

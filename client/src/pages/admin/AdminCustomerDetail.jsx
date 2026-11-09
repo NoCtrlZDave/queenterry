@@ -68,14 +68,14 @@ export default function AdminCustomerDetail() {
           <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-ink">
             Contact
           </p>
-          <p className="flex items-center gap-2">
-            <Mail className="h-3.5 w-3.5 text-smoke" /> {customer.email}
+          <p className="flex min-w-0 items-center gap-2 break-words">
+            <Mail className="h-3.5 w-3.5 shrink-0 text-smoke" /> {customer.email}
           </p>
-          <p className="flex items-center gap-2">
-            <Phone className="h-3.5 w-3.5 text-smoke" /> {customer.phone || 'No phone saved'}
+          <p className="flex min-w-0 items-center gap-2 break-words">
+            <Phone className="h-3.5 w-3.5 shrink-0 text-smoke" /> {customer.phone || 'No phone saved'}
           </p>
           {customer.addresses?.[0] && (
-            <p className="flex items-start gap-2 pt-1">
+            <p className="flex min-w-0 items-start gap-2 break-words pt-1">
               <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-smoke" />
               {[customer.addresses[0].street, customer.addresses[0].city, customer.addresses[0].state]
                 .filter(Boolean)
@@ -124,7 +124,7 @@ export default function AdminCustomerDetail() {
                   <span className={`rounded-full border px-2 py-0.5 text-[9px] font-semibold ${meta.className}`}>
                     {meta.short}
                   </span>
-                  <span className="text-xs font-semibold text-ink">{formatNaira(order.total)}</span>
+                  <span className="shrink-0 text-xs font-semibold text-ink">{formatNaira(order.total)}</span>
                 </Link>
               );
             })}

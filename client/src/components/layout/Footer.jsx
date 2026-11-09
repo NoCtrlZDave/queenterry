@@ -39,10 +39,10 @@ export default function Footer() {
   );
 
   return (
-    <footer className="mt-20 bg-ink text-white">
+    <footer className="mt-20 bg-ink pb-[calc(4rem+env(safe-area-inset-bottom))] text-white xl:pb-0">
       <div className="shell py-14 sm:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
-          <div>
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+          <div className="sm:col-span-2 lg:col-span-1">
             <Logo variant="light" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/55">
               Premium smartphones, electronics and everyday technology — carefully selected and
@@ -110,7 +110,7 @@ export default function Footer() {
               {settings.supportPhone && (
                 <a
                   href={`tel:${settings.supportPhone.replace(/\s/g, '')}`}
-                  className="flex items-start gap-2.5 transition hover:text-white"
+                  className="flex items-start gap-2.5 break-words transition hover:text-white"
                 >
                   <Phone className="mt-0.5 h-4 w-4 shrink-0" />
                   {settings.supportPhone}
@@ -119,7 +119,7 @@ export default function Footer() {
               {settings.supportEmail && (
                 <a
                   href={`mailto:${settings.supportEmail}`}
-                  className="flex items-start gap-2.5 transition hover:text-white"
+                  className="flex items-start gap-2.5 break-words transition hover:text-white"
                 >
                   <Mail className="mt-0.5 h-4 w-4 shrink-0" />
                   {settings.supportEmail}
@@ -135,7 +135,7 @@ export default function Footer() {
                 WhatsApp support
               </a>
               {settings.address && (
-                <p className="flex items-start gap-2.5">
+                <p className="flex items-start gap-2.5 break-words">
                   <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
                   {settings.address}
                 </p>

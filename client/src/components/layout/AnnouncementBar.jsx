@@ -25,7 +25,7 @@ export default function AnnouncementBar() {
 
   return (
     <div className="bg-ink text-white">
-      <div className="shell flex h-9 items-center justify-between gap-4 text-[11px] sm:text-xs">
+      <div className="shell flex min-h-9 items-center justify-between gap-4 py-1.5 text-[11px] sm:h-9 sm:py-0 sm:text-xs">
         <div className="hidden items-center gap-2 text-white/60 sm:flex">
           <span className="h-1.5 w-1.5 rounded-full bg-accent-300" />
           <span>Official Queen Terry store</span>
@@ -39,7 +39,7 @@ export default function AnnouncementBar() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -8, opacity: 0 }}
               transition={{ duration: 0.35 }}
-              className="truncate text-center font-medium tracking-wide text-white/90"
+              className="line-clamp-2 text-center font-medium leading-snug tracking-wide text-white/90 sm:line-clamp-1 sm:truncate"
             >
               {messages[index]}
             </motion.p>

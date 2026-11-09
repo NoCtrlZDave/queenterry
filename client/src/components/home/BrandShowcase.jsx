@@ -13,7 +13,7 @@ export default function BrandShowcase({ brands = [] }) {
           className="group flex min-h-[118px] flex-col justify-between rounded-2xl border border-line bg-white p-4 transition duration-300 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-card"
         >
           <div className="flex items-start justify-between gap-2">
-            <span className="font-display text-lg font-bold tracking-tight text-ink">
+            <span className="min-w-0 break-words font-display text-lg font-bold leading-tight tracking-tight text-ink">
               {brand.name}
             </span>
             <ArrowUpRight className="h-4 w-4 shrink-0 text-smoke transition group-hover:text-accent" />

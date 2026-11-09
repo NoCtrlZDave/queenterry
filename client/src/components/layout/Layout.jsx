@@ -22,11 +22,11 @@ export default function Layout() {
   const { pathname } = useLocation();
 
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <div className="flex min-h-dvh-safe flex-col bg-white">
       <ScrollToTop />
       <AnnouncementBar />
       <Navbar />
-      <main className="flex-1 pb-16 lg:pb-0">
+      <main className="flex-1">
         <motion.div
           key={pathname}
           initial={{ opacity: 0, y: 8 }}

@@ -71,16 +71,16 @@ function FilterPanel({ categories, brands, values, onCategory, onBrand, onAvaila
                   active ? 'bg-mist font-semibold text-ink' : 'text-smoke hover:bg-mist hover:text-ink'
                 )}
               >
-                <span className="flex items-center gap-2">
+                <span className="flex min-w-0 items-center gap-2">
                   <span
                     className={cn(
-                      'h-1.5 w-1.5 rounded-full',
+                      'h-1.5 w-1.5 shrink-0 rounded-full',
                       active || selectedCategories.includes(category.slug) ? 'bg-accent' : 'bg-line'
                     )}
                   />
-                  {category.name}
+                  <span className="break-words">{category.name}</span>
                 </span>
-                <span className="text-[10px] text-smoke">{category.productCount || 0}</span>
+                <span className="shrink-0 text-[10px] text-smoke">{category.productCount || 0}</span>
               </button>
             );
           })}
@@ -335,7 +335,7 @@ export default function Shop({ dealsOnly = false }) {
               )}
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <button
                 type="button"
                 onClick={() => setFiltersOpen(true)}
@@ -371,7 +371,7 @@ export default function Shop({ dealsOnly = false }) {
                 key={chip.key}
                 type="button"
                 onClick={chip.clear}
-                className="inline-flex items-center gap-1.5 rounded-full bg-mist px-3 py-1.5 text-[11px] font-medium text-ink transition hover:bg-line"
+                className="inline-flex max-w-full items-center gap-1.5 break-words rounded-full bg-mist px-3 py-1.5 text-[11px] font-medium text-ink transition hover:bg-line"
               >
                 {chip.label}
                 <X className="h-3 w-3" />
@@ -390,7 +390,7 @@ export default function Shop({ dealsOnly = false }) {
 
       <div className="mt-8 flex gap-10">
         <aside className="hidden w-60 shrink-0 lg:block">
-          <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2">
+          <div className="sticky top-24 sticky-scroll pr-2">
             <FilterPanel categories={categories} brands={brands} values={values} {...panelHandlers} />
           </div>
         </aside>
@@ -409,12 +409,12 @@ export default function Shop({ dealsOnly = false }) {
           )}
 
           {data.pages > 1 && (
-            <div className="mt-12 flex items-center justify-center gap-1.5">
+            <div className="mt-12 flex items-center justify-center gap-1 sm:gap-1.5">
               <button
                 type="button"
                 disabled={data.page <= 1}
                 onClick={() => setMany({ page: String(data.page - 1) })}
-                className="grid h-9 w-9 place-items-center rounded-full border border-line text-ink transition hover:border-ink/40 disabled:opacity-35"
+                className="grid h-8 w-8 place-items-center rounded-full border border-line text-ink transition hover:border-ink/40 disabled:opacity-35 sm:h-9 sm:w-9"
                 aria-label="Previous page"
               >
                 <ChevronLeft className="h-4 w-4" />
@@ -431,7 +431,7 @@ export default function Shop({ dealsOnly = false }) {
                     type="button"
                     onClick={() => setMany({ page: String(number) })}
                     className={cn(
-                      'grid h-9 w-9 place-items-center rounded-full text-xs font-semibold transition',
+                      'grid h-8 w-8 place-items-center rounded-full text-xs font-semibold transition sm:h-9 sm:w-9',
                       number === data.page
                         ? 'bg-ink text-white'
                         : 'border border-line text-ink hover:border-ink/40'
@@ -447,7 +447,7 @@ export default function Shop({ dealsOnly = false }) {
                 type="button"
                 disabled={data.page >= data.pages}
                 onClick={() => setMany({ page: String(data.page + 1) })}
-                className="grid h-9 w-9 place-items-center rounded-full border border-line text-ink transition hover:border-ink/40 disabled:opacity-35"
+                className="grid h-8 w-8 place-items-center rounded-full border border-line text-ink transition hover:border-ink/40 disabled:opacity-35 sm:h-9 sm:w-9"
                 aria-label="Next page"
               >
                 <ChevronRight className="h-4 w-4" />
@@ -461,7 +461,6 @@ export default function Shop({ dealsOnly = false }) {
         open={filtersOpen}
         onClose={() => setFiltersOpen(false)}
         title="Filters"
-        panelClassName="max-h-[85vh] overflow-y-auto"
       >
         <FilterPanel categories={categories} brands={brands} values={values} {...panelHandlers} />
         <button

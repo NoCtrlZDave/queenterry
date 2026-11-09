@@ -100,8 +100,8 @@ export default function Hero({ featured }) {
                 {heroProduct ? 'Featured device' : 'New season'}
               </p>
               <div className="mt-1 flex items-end justify-between gap-3">
-                <div>
-                  <p className="font-display text-base font-semibold leading-tight text-ink">
+                <div className="min-w-0">
+                  <p className="line-clamp-2 break-words font-display text-base font-semibold leading-tight text-ink">
                     {heroProduct?.name || 'Latest smartphones'}
                   </p>
                   <p className="mt-0.5 text-sm font-semibold text-accent">

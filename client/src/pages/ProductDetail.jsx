@@ -245,17 +245,17 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        <div className="lg:sticky lg:top-24 lg:self-start">
+        <div className="sticky-lg-safe">
           <div className="flex items-center justify-between gap-3">
             {product.brand && (
               <Link
                 to={`/shop?brand=${product.brand.slug}`}
-                className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent hover:underline"
+                className="min-w-0 break-words text-[11px] font-semibold uppercase tracking-[0.18em] text-accent hover:underline"
               >
                 {product.brand.name}
               </Link>
             )}
-            <span className="text-[11px] text-smoke">SKU: {product.sku || '—'}</span>
+            <span className="shrink-0 break-words text-right text-[11px] text-smoke">SKU: {product.sku || '—'}</span>
           </div>
 
           <h1 className="mt-2 font-display text-3xl font-semibold leading-tight tracking-[-0.04em] text-ink sm:text-4xl">
@@ -300,7 +300,7 @@ export default function ProductDetail() {
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink">
                   Colour
                 </p>
-                <span className="text-xs text-smoke">{color}</span>
+                <span className="min-w-0 break-words text-right text-xs text-smoke">{color}</span>
               </div>
               <div className="mt-3 flex flex-wrap gap-2">
                 {product.colors.map((option) => {
@@ -436,7 +436,7 @@ export default function ProductDetail() {
       </div>
 
       <section className="mt-14">
-        <div className="flex gap-1 overflow-x-auto border-b border-line">
+        <div className="hide-scrollbar scroll-x-touch flex gap-1 overflow-x-auto overscroll-x-contain border-b border-line">
           {tabs.map(([value, label]) => (
             <button
               key={value}
@@ -478,8 +478,8 @@ export default function ProductDetail() {
                 <div className="mt-3 divide-y divide-line">
                   {product.specs?.slice(0, 4).map((spec) => (
                     <div key={spec.label} className="flex justify-between gap-4 py-2.5 text-xs">
-                      <span className="text-smoke">{spec.label}</span>
-                      <span className="text-right font-medium text-ink">{spec.value}</span>
+                      <span className="min-w-0 break-words text-smoke">{spec.label}</span>
+                      <span className="min-w-0 break-words text-right font-medium text-ink">{spec.value}</span>
                     </div>
                   ))}
                 </div>
@@ -503,7 +503,7 @@ export default function ProductDetail() {
                       <span className="text-xs font-semibold uppercase tracking-wide text-smoke">
                         {spec.label}
                       </span>
-                      <span className="text-ink">{spec.value}</span>
+                      <span className="break-words text-ink">{spec.value}</span>
                     </div>
                   ))}
                 </div>

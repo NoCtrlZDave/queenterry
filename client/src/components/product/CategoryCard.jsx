@@ -17,8 +17,8 @@ export default function CategoryCard({ category }) {
         />
       </div>
       <div className="flex items-center justify-between gap-3 px-1 pb-1 pt-4">
-        <div>
-          <h3 className="font-display text-base font-semibold leading-tight text-ink">
+        <div className="min-w-0">
+          <h3 className="break-words font-display text-base font-semibold leading-tight text-ink">
             {category.name}
           </h3>
           <p className="mt-1 text-xs text-smoke">

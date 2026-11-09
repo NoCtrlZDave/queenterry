@@ -16,6 +16,11 @@
     @apply bg-white font-sans text-ink antialiased;
   }
 
+  html,
+  body {
+    overflow-x: clip;
+  }
+
   ::selection {
     @apply bg-accent text-white;
   }
@@ -36,6 +41,16 @@
   textarea,
   select {
     font-family: inherit;
+  }
+
+  @supports (-webkit-touch-callout: none) {
+    @media (max-width: 767px) {
+      input,
+      textarea,
+      select {
+        font-size: 16px;
+      }
+    }
   }
 }
 
@@ -109,6 +124,45 @@
     display: none;
   }
 
+  .h-dvh-safe {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .min-h-dvh-safe {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .modal-panel-scroll {
+    max-height: 92vh;
+    max-height: 92dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .overlay-scroll {
+    max-height: calc(100vh - 5rem);
+    max-height: calc(100dvh - 5rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sticky-scroll {
+    max-height: calc(100vh - 7rem);
+    max-height: calc(100dvh - 7rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .scroll-x-touch {
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .skeleton {
     @apply relative overflow-hidden rounded-xl bg-mist;
   }
@@ -119,6 +173,23 @@
   }
 }
 
+@media (min-width: 1024px) and (min-height: 780px) {
+  .sticky-lg-safe {
+    position: sticky;
+    top: 6rem;
+    align-self: start;
+  }
+}
+
+@media (min-width: 1280px) and (min-height: 780px) {
+  .sticky-xl-safe {
+    position: sticky;
+    top: 1.5rem;
+    align-self: start;
+  }
+}
+
 #root {
   min-height: 100vh;
+  min-height: 100dvh;
 }

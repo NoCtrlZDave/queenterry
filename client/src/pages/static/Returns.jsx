@@ -125,7 +125,7 @@ export default function Returns() {
               Send your order reference and we will take it from there.
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <a href={chatUrl} target="_blank" rel="noreferrer" className="btn-light text-xs">
               <MessageCircle className="h-4 w-4" /> WhatsApp us
             </a>

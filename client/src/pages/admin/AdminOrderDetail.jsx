@@ -135,14 +135,14 @@ export default function AdminOrderDetail() {
                     />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs font-semibold text-ink">{item.name}</p>
-                    <p className="text-[10px] text-smoke">
+                    <p className="break-words text-xs font-semibold text-ink">{item.name}</p>
+                    <p className="break-words text-[10px] text-smoke">
                       {item.brand ? `${item.brand} · ` : ''}
                       {item.color ? `${item.color} · ` : ''}Qty {item.quantity} ×{' '}
                       {formatNaira(item.price)}
                     </p>
                   </div>
-                  <span className="text-xs font-semibold text-ink">
+                  <span className="shrink-0 text-xs font-semibold text-ink">
                     {formatNaira(item.price * item.quantity)}
                   </span>
                 </div>
@@ -151,17 +151,17 @@ export default function AdminOrderDetail() {
             <div className="space-y-2 border-t border-line px-5 py-4 text-xs">
               <div className="flex justify-between">
                 <span className="text-smoke">Subtotal</span>
-                <span className="font-semibold text-ink">{formatNaira(order.subtotal)}</span>
+                <span className="shrink-0 font-semibold text-ink">{formatNaira(order.subtotal)}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-smoke">Delivery</span>
-                <span className="font-semibold text-ink">
+                <span className="shrink-0 font-semibold text-ink">
                   {order.deliveryFee ? formatNaira(order.deliveryFee) : 'Free'}
                 </span>
               </div>
               <div className="flex justify-between border-t border-line pt-2 text-sm">
                 <span className="font-semibold text-ink">Total</span>
-                <span className="font-display font-semibold text-ink">
+                <span className="shrink-0 font-display font-semibold text-ink">
                   {formatNaira(order.total)}
                 </span>
               </div>
@@ -207,13 +207,13 @@ export default function AdminOrderDetail() {
                     type="button"
                     disabled={active || Boolean(savingStatus)}
                     onClick={() => changeStatus(status)}
-                    className={`flex w-full items-center justify-between rounded-xl border px-3 py-2.5 text-xs font-medium transition ${
+                    className={`flex w-full items-center justify-between gap-2 rounded-xl border px-3 py-2.5 text-left text-xs font-medium transition ${
                       active
                         ? 'border-ink bg-ink text-white'
                         : 'border-line text-ink hover:border-ink/30 hover:bg-cloud'
                     } disabled:cursor-default`}
                   >
-                    {itemMeta.short || status}
+                    <span className="break-words">{itemMeta.short || status}</span>
                     {savingStatus === status && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
                   </button>
                 );
@@ -253,7 +253,7 @@ export default function AdminOrderDetail() {
 
           <section className="rounded-2xl border border-line bg-white p-5">
             <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-ink">Customer</h2>
-            <div className="mt-3 space-y-1 text-xs leading-relaxed text-smoke">
+            <div className="mt-3 space-y-1 break-words text-xs leading-relaxed text-smoke">
               <p className="text-sm font-semibold text-ink">{order.customer.name}</p>
               <p>{order.customer.phone}</p>
               {order.customer.email && <p>{order.customer.email}</p>}

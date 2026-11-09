@@ -79,7 +79,7 @@ export default function AccountOrderDetail() {
                   }`}
                 />
                 <p
-                  className={`mt-2 text-[9px] font-semibold uppercase tracking-wide ${
+                  className={`mt-2 break-words px-0.5 text-[8px] font-semibold uppercase leading-tight tracking-wide sm:text-[9px] ${
                     index <= stepIndex ? 'text-ink' : 'text-smoke/60'
                   }`}
                 >
@@ -112,12 +112,12 @@ export default function AccountOrderDetail() {
                 />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-xs font-semibold text-ink">{item.name}</p>
-                <p className="text-[10px] text-smoke">
+                <p className="break-words text-xs font-semibold text-ink">{item.name}</p>
+                <p className="break-words text-[10px] text-smoke">
                   {item.color ? `${item.color} · ` : ''}Qty {item.quantity} × {formatNaira(item.price)}
                 </p>
               </div>
-              <span className="text-xs font-semibold text-ink">
+              <span className="shrink-0 text-xs font-semibold text-ink">
                 {formatNaira(item.price * item.quantity)}
               </span>
             </div>
@@ -126,17 +126,17 @@ export default function AccountOrderDetail() {
         <div className="space-y-2 border-t border-line px-5 py-4 text-xs">
           <div className="flex justify-between">
             <span className="text-smoke">Subtotal</span>
-            <span className="font-semibold text-ink">{formatNaira(order.subtotal)}</span>
+            <span className="shrink-0 font-semibold text-ink">{formatNaira(order.subtotal)}</span>
           </div>
           <div className="flex justify-between">
             <span className="text-smoke">Delivery</span>
-            <span className="font-semibold text-ink">
+            <span className="shrink-0 font-semibold text-ink">
               {order.deliveryFee ? formatNaira(order.deliveryFee) : 'Free'}
             </span>
           </div>
           <div className="flex justify-between border-t border-line pt-2 text-sm">
             <span className="font-semibold text-ink">Total</span>
-            <span className="font-display font-semibold text-ink">{formatNaira(order.total)}</span>
+            <span className="shrink-0 font-display font-semibold text-ink">{formatNaira(order.total)}</span>
           </div>
         </div>
       </div>
@@ -146,7 +146,7 @@ export default function AccountOrderDetail() {
           <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-ink">
             Delivery details
           </h3>
-          <p className="mt-3 text-xs leading-relaxed text-smoke">
+          <p className="mt-3 break-words text-xs leading-relaxed text-smoke">
             <span className="font-semibold text-ink">{order.customer.name}</span>
             <br />
             {order.customer.phone}
@@ -170,7 +170,7 @@ export default function AccountOrderDetail() {
 
         <div className="rounded-2xl border border-line p-5">
           <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-ink">Payment</h3>
-          <p className="mt-3 text-xs leading-relaxed text-smoke">
+          <p className="mt-3 break-words text-xs leading-relaxed text-smoke">
             Payment status:{' '}
             <span className="font-semibold text-ink">
               {order.paymentStatus === 'paid' ? 'Paid' : 'Not confirmed'}

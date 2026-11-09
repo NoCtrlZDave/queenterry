@@ -16,8 +16,8 @@ import ProductImage from '../../components/product/ProductImage';
 
 function StatCard({ label, value, hint, icon: Icon }) {
   return (
-    <div className="rounded-2xl border border-line bg-white p-5">
-      <div className="flex items-center justify-between">
+    <div className="rounded-2xl border border-line bg-white p-4 sm:p-5">
+      <div className="flex items-center justify-between gap-2">
         <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-smoke">
           {label}
         </span>
@@ -25,7 +25,7 @@ function StatCard({ label, value, hint, icon: Icon }) {
           <Icon className="h-4 w-4" />
         </span>
       </div>
-      <p className="mt-3 font-display text-2xl font-semibold text-ink">{value}</p>
+      <p className="mt-3 break-words font-display text-lg font-semibold leading-tight text-ink sm:text-2xl">{value}</p>
       {hint && <p className="mt-1 text-[11px] text-smoke">{hint}</p>}
     </div>
   );
@@ -112,12 +112,12 @@ export default function Dashboard() {
               <TrendingUp className="h-3.5 w-3.5" /> Last 6 months
             </span>
           </div>
-          <div className="mt-6 flex h-52 items-end gap-3 sm:gap-5">
+          <div className="mt-6 flex h-40 items-end gap-3 sm:h-52 sm:gap-5">
             {monthly.map((month) => {
               const height = Math.max(4, Math.round((month.revenue / maxRevenue) * 100));
               return (
                 <div key={month.month} className="flex flex-1 flex-col items-center gap-2">
-                  <span className="text-[9px] font-semibold text-smoke">
+                  <span className="hidden text-[9px] font-semibold text-smoke sm:block">
                     {month.revenue ? formatNaira(month.revenue) : '—'}
                   </span>
                   <div className="flex w-full flex-1 items-end">
@@ -143,7 +143,7 @@ export default function Dashboard() {
               return (
                 <div key={row.status} className="text-xs">
                   <div className="flex items-center justify-between">
-                    <span className="font-medium text-ink">{meta.short || row.status}</span>
+                    <span className="break-words font-medium text-ink">{meta.short || row.status}</span>
                     <span className="text-smoke">{row.count}</span>
                   </div>
                   <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-mist">
@@ -181,14 +181,14 @@ export default function Dashboard() {
                   >
                     <div className="min-w-0 flex-1">
                       <p className="text-xs font-semibold text-ink">{order.orderNumber}</p>
-                      <p className="text-[10px] text-smoke">
+                      <p className="break-words text-[10px] text-smoke">
                         {order.customer?.name} · {formatDate(order.createdAt)}
                       </p>
                     </div>
                     <span className={`rounded-full border px-2 py-0.5 text-[9px] font-semibold ${meta.className}`}>
                       {meta.short}
                     </span>
-                    <span className="text-xs font-semibold text-ink">{formatNaira(order.total)}</span>
+                    <span className="shrink-0 text-xs font-semibold text-ink">{formatNaira(order.total)}</span>
                   </Link>
                 );
               })}
@@ -213,7 +213,7 @@ export default function Dashboard() {
                       <ProductImage product={product} className="h-full w-full" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-[11px] font-semibold text-ink">{product.name}</p>
+                      <p className="line-clamp-2 break-words text-[11px] font-semibold text-ink">{product.name}</p>
                       <p className="text-[10px] text-smoke">{product.brand?.name}</p>
                     </div>
                     <span
@@ -241,7 +241,7 @@ export default function Dashboard() {
                       <ProductImage product={product} className="h-full w-full" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-[11px] font-semibold text-ink">{product.name}</p>
+                      <p className="line-clamp-2 break-words text-[11px] font-semibold text-ink">{product.name}</p>
                       <p className="text-[10px] text-smoke">{formatNaira(product.price)}</p>
                     </div>
                     <span className="text-[10px] font-semibold text-smoke">

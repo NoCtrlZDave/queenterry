@@ -19,7 +19,7 @@ export default function OrderSummary({ items = [], subtotal = 0, title = 'Order 
         </span>
       </div>
 
-      <div className="mt-4 max-h-80 space-y-3 overflow-y-auto pr-1">
+      <div className="mt-4 max-h-80 space-y-3 overflow-y-auto overscroll-contain pr-1">
         {items.map((item) => (
           <div key={`${item.productId}-${item.color}`} className="flex gap-3">
             <div className="h-16 w-14 shrink-0 overflow-hidden rounded-xl">

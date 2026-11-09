@@ -65,13 +65,13 @@ export default function ProductCard({ product, className = '' }) {
       </div>
 
       <div className="flex flex-1 flex-col pt-4">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-smoke">
+        <p className="truncate text-[10px] font-semibold uppercase tracking-[0.16em] text-smoke">
           {product.brand?.name || product.brand || 'Queen Terry'}
         </p>
         <div className="mt-1 flex items-start justify-between gap-3">
           <Link
             to={`/product/${product.slug}`}
-            className="font-display text-[15px] font-semibold leading-snug text-ink transition hover:text-accent"
+            className="min-w-0 font-display text-[15px] font-semibold leading-snug text-ink transition hover:text-accent"
           >
             {product.name}
           </Link>
@@ -94,7 +94,7 @@ export default function ProductCard({ product, className = '' }) {
             onClick={() =>
               addItem(product, { quantity: 1, color: product.colors?.[0]?.name || '' })
             }
-            className="btn-primary mt-3 w-full py-2.5 text-xs"
+            className="btn-primary mt-3 w-full gap-1.5 px-2 py-2.5 text-xs"
           >
             <ShoppingBag className="h-3.5 w-3.5" />
             {outOfStock ? 'Out of stock' : 'Add to cart'}

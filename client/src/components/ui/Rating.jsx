@@ -5,7 +5,7 @@ export default function Rating({ value = 0, count = 0, className = '', compact =
   if (!value) return null;
 
   return (
-    <div className={cn('flex items-center gap-1.5', className)}>
+    <div className={cn('flex flex-wrap items-center gap-x-1.5 gap-y-0.5', className)}>
       <div className="flex items-center gap-0.5">
         {[1, 2, 3, 4, 5].map((star) => (
           <Star

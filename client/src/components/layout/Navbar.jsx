@@ -68,7 +68,7 @@ function MegaMenu({ item }) {
   const items = categories.filter((c) => item.slugs.includes(c.slug));
 
   return (
-    <div className="absolute left-1/2 top-full w-[560px] -translate-x-1/2 pt-4 opacity-0 invisible transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+    <div className="absolute left-1/2 top-full w-[min(560px,calc(100vw-2rem))] -translate-x-1/2 pt-4 opacity-0 invisible transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
       <div className="overflow-hidden rounded-3xl border border-line bg-white p-5 shadow-lift">
         <div className="grid grid-cols-[1fr_200px] gap-5">
           <div>
@@ -155,8 +155,8 @@ export default function Navbar() {
           scrolled && 'border-line shadow-[0_8px_30px_-24px_rgba(11,11,15,0.5)]'
         )}
       >
-        <div className="shell flex h-16 items-center justify-between gap-4 lg:h-20">
-          <div className="flex items-center gap-2 lg:hidden">
+        <div className="shell flex h-16 items-center justify-between gap-4 xl:h-20">
+          <div className="flex items-center gap-2 xl:hidden">
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
@@ -169,13 +169,13 @@ export default function Navbar() {
 
           <Logo className="shrink-0" />
 
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-1 xl:flex" aria-label="Primary">
             {NAV_ITEMS.map((item) =>
               item.slugs ? (
                 <div key={item.label} className="group relative">
                   <Link
                     to={item.to}
-                    className="inline-flex items-center rounded-full px-3 py-2 text-[13px] font-medium text-ink transition hover:bg-mist"
+                    className="inline-flex items-center whitespace-nowrap rounded-full px-3 py-2 text-[13px] font-medium text-ink transition hover:bg-mist"
                   >
                     {item.label}
                   </Link>
@@ -186,7 +186,7 @@ export default function Navbar() {
                   key={item.label}
                   to={item.to}
                   className={cn(
-                    'rounded-full px-3 py-2 text-[13px] font-medium transition hover:bg-mist',
+                    'whitespace-nowrap rounded-full px-3 py-2 text-[13px] font-medium transition hover:bg-mist',
                     item.label === 'Deals' ? 'text-accent' : 'text-ink'
                   )}
                 >

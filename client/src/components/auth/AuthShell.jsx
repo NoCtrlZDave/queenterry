@@ -11,8 +11,8 @@ const perks = [
 
 export default function AuthShell({ title, subtitle, children, footer }) {
   return (
-    <div className="min-h-screen bg-white">
-      <div className="grid min-h-screen lg:grid-cols-[0.95fr_1.05fr]">
+    <div className="min-h-dvh-safe bg-white">
+      <div className="grid min-h-dvh-safe lg:grid-cols-[0.95fr_1.05fr]">
         <aside className="relative hidden overflow-hidden bg-ink p-10 text-white lg:flex lg:flex-col lg:justify-between xl:p-14">
           <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-accent/40 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
@@ -39,7 +39,7 @@ export default function AuthShell({ title, subtitle, children, footer }) {
           </div>
         </aside>
 
-        <div className="flex flex-col px-5 py-6 sm:px-8 lg:px-12">
+        <div className="flex flex-col px-5 py-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] sm:px-8 lg:px-12">
           <div className="flex items-center justify-between">
             <div className="lg:hidden">
               <Logo />

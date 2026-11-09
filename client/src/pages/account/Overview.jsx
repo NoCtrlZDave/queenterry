@@ -96,10 +96,10 @@ export default function Overview() {
                       {order.items.length === 1 ? 'item' : 'items'}
                     </p>
                   </div>
-                  <span className={`rounded-full border px-2.5 py-1 text-[10px] font-semibold ${meta.className}`}>
+                  <span className={`break-words rounded-full border px-2.5 py-1 text-[10px] font-semibold ${meta.className}`}>
                     {meta.short}
                   </span>
-                  <span className="text-sm font-semibold text-ink">{formatNaira(order.total)}</span>
+                  <span className="shrink-0 text-sm font-semibold text-ink">{formatNaira(order.total)}</span>
                 </Link>
               );
             })}
@@ -110,7 +110,7 @@ export default function Overview() {
       <div className="grid gap-4 sm:grid-cols-2">
         <section className="rounded-2xl border border-line p-5">
           <h2 className="font-display text-base font-semibold text-ink">Contact details</h2>
-          <div className="mt-3 space-y-1 text-xs text-smoke">
+          <div className="mt-3 space-y-1 break-words text-xs text-smoke">
             <p className="text-sm font-semibold text-ink">{user?.name}</p>
             <p>{user?.email}</p>
             <p>{user?.phone || 'No phone number saved yet'}</p>
@@ -123,7 +123,7 @@ export default function Overview() {
         <section className="rounded-2xl border border-line p-5">
           <h2 className="font-display text-base font-semibold text-ink">Default address</h2>
           {defaultAddress ? (
-            <p className="mt-3 text-xs leading-relaxed text-smoke">
+            <p className="mt-3 break-words text-xs leading-relaxed text-smoke">
               <span className="font-semibold text-ink">{defaultAddress.label}</span>
               <br />
               {defaultAddress.street}

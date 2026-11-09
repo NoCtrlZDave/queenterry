@@ -78,10 +78,10 @@ export default function Orders() {
               </div>
 
               <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3 text-xs">
-                <span className="text-smoke">
+                <span className="min-w-0 break-words text-smoke">
                   {order.items.map((item) => item.name).join(', ')}
                 </span>
-                <span className="font-semibold text-ink">{formatNaira(order.total)}</span>
+                <span className="shrink-0 font-semibold text-ink">{formatNaira(order.total)}</span>
               </div>
             </Link>
           );

@@ -306,7 +306,7 @@ export default function AdminSettings() {
           </Card>
         </div>
 
-        <div className="space-y-5 xl:sticky xl:top-6 xl:self-start">
+        <div className="sticky-xl-safe space-y-5">
           <Card title="Social links" description="Only filled links appear in the footer.">
             <div className="space-y-3">
               {[

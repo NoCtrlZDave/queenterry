@@ -207,7 +207,7 @@ export default function OrderConfirmation() {
             <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-ink">
               Customer
             </h2>
-            <div className="mt-3 space-y-1.5 text-xs text-smoke">
+            <div className="mt-3 space-y-1.5 break-words text-xs text-smoke">
               <p className="text-sm font-semibold text-ink">{order.customer.name}</p>
               <p>{order.customer.phone}</p>
               {order.customer.email && <p>{order.customer.email}</p>}
@@ -229,17 +229,17 @@ export default function OrderConfirmation() {
             <div className="mt-3 space-y-2 text-xs">
               <div className="flex justify-between">
                 <span className="text-smoke">Subtotal</span>
-                <span className="font-semibold text-ink">{formatNaira(order.subtotal)}</span>
+                <span className="shrink-0 font-semibold text-ink">{formatNaira(order.subtotal)}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-smoke">Delivery</span>
-                <span className="font-semibold text-ink">
+                <span className="min-w-0 break-words text-right font-semibold text-ink">
                   {order.deliveryFee ? formatNaira(order.deliveryFee) : 'Confirmed on WhatsApp'}
                 </span>
               </div>
               <div className="flex justify-between border-t border-line pt-2 text-sm">
                 <span className="font-semibold text-ink">Total</span>
-                <span className="font-display font-semibold text-ink">
+                <span className="shrink-0 font-display font-semibold text-ink">
                   {formatNaira(order.total)}
                 </span>
               </div>
@@ -260,10 +260,10 @@ export default function OrderConfirmation() {
                   {item.quantity}×
                 </span>
                 <div className="min-w-0 flex-1">
-                  <p className="font-semibold text-ink">{item.name}</p>
+                  <p className="break-words font-semibold text-ink">{item.name}</p>
                   {item.color && <p className="text-[10px] text-smoke">{item.color}</p>}
                 </div>
-                <span className="font-semibold text-ink">
+                <span className="shrink-0 font-semibold text-ink">
                   {formatNaira(item.price * item.quantity)}
                 </span>
               </div>

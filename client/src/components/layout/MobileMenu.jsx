@@ -51,7 +51,7 @@ export default function MobileMenu({ open, onClose, onSearch }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[85] lg:hidden"
+          className="fixed inset-0 z-[85] xl:hidden"
         >
           <div className="absolute inset-0 bg-ink/45 backdrop-blur-sm" onClick={onClose} />
           <motion.aside
@@ -59,7 +59,7 @@ export default function MobileMenu({ open, onClose, onSearch }) {
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            className="relative flex h-full w-[88%] max-w-sm flex-col bg-white"
+            className="h-dvh-safe relative flex w-[88%] max-w-sm flex-col bg-white pl-[env(safe-area-inset-left)]"
           >
             <div className="flex items-center justify-between border-b border-line px-5 py-4">
               <Logo compact />
@@ -73,7 +73,7 @@ export default function MobileMenu({ open, onClose, onSearch }) {
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto px-4 py-5">
+            <div className="min-h-0 flex-1 overflow-y-auto px-4 py-5">
               <button
                 type="button"
                 onClick={() => {
@@ -158,7 +158,7 @@ export default function MobileMenu({ open, onClose, onSearch }) {
               </div>
             </div>
 
-            <div className="border-t border-line p-4">
+            <div className="border-t border-line p-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
               <a
                 href={buildWhatsAppUrl(
                   whatsappNumber,
