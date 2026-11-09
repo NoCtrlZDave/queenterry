@@ -1,0 +1,16 @@
+{
+  "name": "queen-terry-store",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Queen Terry - premium smartphones, electronics and gadgets store with WhatsApp ordering",
+  "scripts": {
+    "install:all": "npm install && npm --prefix server install && npm --prefix client install",
+    "dev": "concurrently -n API,WEB -c magenta,cyan \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "seed": "npm --prefix server run seed",
+    "build": "npm --prefix client run build",
+    "start": "npm --prefix server start"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
