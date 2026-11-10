@@ -3,12 +3,19 @@
   "version": "1.0.0",
   "private": true,
   "description": "Queen Terry - premium smartphones, electronics and gadgets store with WhatsApp ordering",
+  "workspaces": [
+    "server",
+    "client"
+  ],
   "scripts": {
-    "install:all": "npm install && npm --prefix server install && npm --prefix client install",
+    "install:all": "npm install",
     "dev": "concurrently -n API,WEB -c magenta,cyan \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
     "seed": "npm --prefix server run seed",
-    "build": "npm --prefix client install && npm --prefix client run build",
+    "build": "npm --prefix client run build",
     "start": "npm --prefix server start"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"

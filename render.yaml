@@ -10,8 +10,9 @@ services:
     name: queen-terry-store
     env: node
     rootDir: .
-    # Install root/server/client dependencies, then build the Vite client
-    buildCommand: npm run install:all && npm run build
+    # npm workspaces install server + client dependencies, then build the Vite client
+    # --include=dev is required because NODE_ENV=production would otherwise skip Vite
+    buildCommand: npm install --include=dev && npm run build
     # Express serves the API plus the built client with SPA fallback
     startCommand: NODE_ENV=production npm start
     healthCheckPath: /api/health
