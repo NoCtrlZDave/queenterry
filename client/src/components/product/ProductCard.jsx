@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Heart, ShoppingBag } from 'lucide-react';
+import { ArrowUpRight, Eye, Heart, ShoppingBag } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
+import { useQuickView } from '../../context/QuickViewContext';
 import { useWishlist } from '../../context/WishlistContext';
 import { cn, discountPercent } from '../../lib/format';
 import Price from '../ui/Price';
@@ -14,6 +15,7 @@ function isNew(product) {
 
 export default function ProductCard({ product, className = '' }) {
   const { addItem } = useCart();
+  const { openQuickView } = useQuickView();
   const { has, toggle } = useWishlist();
   const discount = discountPercent(product);
   const outOfStock = Number(product.stock) <= 0;
@@ -62,6 +64,15 @@ export default function ProductCard({ product, className = '' }) {
             </span>
           </div>
         )}
+
+        <button
+          type="button"
+          onClick={() => openQuickView(product)}
+          aria-label={`Quick view ${product.name}`}
+          className="absolute bottom-3 right-3 z-10 grid h-9 w-9 place-items-center rounded-full bg-white/90 text-ink shadow-sm backdrop-blur transition hover:scale-105 hover:bg-white"
+        >
+          <Eye className="h-4 w-4" />
+        </button>
       </div>
 
       <div className="flex flex-1 flex-col pt-4">

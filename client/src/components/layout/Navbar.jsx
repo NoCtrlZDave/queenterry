@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Heart, Menu, Search, ShoppingBag, User } from 'lucide-react';
+import { ArrowUpRight, ChevronDown, Heart, Menu, Search, ShoppingBag, User } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 import { useCatalog } from '../../context/CatalogContext';
@@ -11,27 +11,50 @@ import SearchOverlay from './SearchOverlay';
 import MobileMenu from './MobileMenu';
 
 const NAV_ITEMS = [
-  { label: 'Smartphones', to: '/shop?category=smartphones' },
-  { label: 'Tablets', to: '/shop?category=tablets' },
-  { label: 'Laptops', to: '/shop?category=laptops' },
-  { label: 'Smartwatches', to: '/shop?category=smartwatches' },
+  {
+    label: 'Smartphones',
+    to: '/shop?category=smartphones',
+    align: 'left',
+    lgSection: 'primary',
+  },
+  { label: 'Tablets', to: '/shop?category=tablets', align: 'left', lgSection: 'primary' },
+  { label: 'Laptops', to: '/shop?category=laptops', align: 'center', lgSection: 'primary' },
+  {
+    label: 'Smartwatches',
+    to: '/shop?category=smartwatches',
+    align: 'center',
+    lgSection: 'more',
+  },
   {
     label: 'Audio',
     to: '/shop?categories=earbuds,headphones,speakers',
     slugs: ['earbuds', 'headphones', 'speakers'],
+    align: 'center',
+    lgSection: 'primary',
   },
   {
     label: 'Accessories',
     to: '/shop?categories=chargers,power-banks,phone-accessories',
     slugs: ['chargers', 'power-banks', 'phone-accessories'],
+    align: 'center',
+    lgSection: 'more',
   },
   {
     label: 'Gadgets',
     to: '/shop?categories=gaming-accessories,other-gadgets',
     slugs: ['gaming-accessories', 'other-gadgets'],
+    align: 'right',
+    lgSection: 'more',
   },
-  { label: 'Deals', to: '/deals' },
+  { label: 'Deals', to: '/deals', lgSection: 'trailing' },
 ];
+
+const LG_PRIMARY = NAV_ITEMS.filter((item) => item.lgSection === 'primary');
+const LG_MORE = NAV_ITEMS.filter((item) => item.lgSection === 'more');
+const LG_TRAILING = NAV_ITEMS.filter((item) => item.lgSection === 'trailing');
+
+const navLinkClass =
+  'inline-flex items-center whitespace-nowrap rounded-full px-2.5 py-2 text-xs font-medium text-ink transition hover:bg-mist xl:text-[13px]';
 
 function IconButton({ label, children, badge, onClick, to }) {
   const content = (
@@ -46,7 +69,7 @@ function IconButton({ label, children, badge, onClick, to }) {
   );
 
   const className =
-    'relative grid h-10 w-10 place-items-center rounded-full text-ink transition hover:bg-mist';
+    'relative grid h-9 w-9 place-items-center rounded-full text-ink transition hover:bg-mist sm:h-10 sm:w-10';
 
   if (to) {
     return (
@@ -66,9 +89,20 @@ function IconButton({ label, children, badge, onClick, to }) {
 function MegaMenu({ item }) {
   const { categories } = useCatalog();
   const items = categories.filter((c) => item.slugs.includes(c.slug));
+  const alignClass =
+    item.align === 'right'
+      ? 'right-0'
+      : item.align === 'left'
+        ? 'left-0'
+        : 'left-1/2 -translate-x-1/2';
 
   return (
-    <div className="absolute left-1/2 top-full w-[min(560px,calc(100vw-2rem))] -translate-x-1/2 pt-4 opacity-0 invisible transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+    <div
+      className={cn(
+        'invisible absolute top-full w-[min(560px,calc(100vw-2rem))] pt-4 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100',
+        alignClass
+      )}
+    >
       <div className="overflow-hidden rounded-3xl border border-line bg-white p-5 shadow-lift">
         <div className="grid grid-cols-[1fr_200px] gap-5">
           <div>
@@ -125,6 +159,57 @@ function MegaMenu({ item }) {
   );
 }
 
+function NavEntry({ item }) {
+  if (item.slugs) {
+    return (
+      <div className="group relative">
+        <Link to={item.to} className={navLinkClass}>
+          {item.label}
+        </Link>
+        <MegaMenu item={item} />
+      </div>
+    );
+  }
+
+  return (
+    <Link
+      to={item.to}
+      className={cn(navLinkClass, item.label === 'Deals' && 'text-accent')}
+    >
+      {item.label}
+    </Link>
+  );
+}
+
+function MoreMenu() {
+  return (
+    <div className="group relative">
+      <button
+        type="button"
+        aria-haspopup="true"
+        className={cn(navLinkClass, 'gap-1')}
+      >
+        More
+        <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" />
+      </button>
+      <div className="invisible absolute right-0 top-full w-56 pt-4 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+        <div className="overflow-hidden rounded-2xl border border-line bg-white p-2 shadow-lift">
+          {LG_MORE.map((item) => (
+            <Link
+              key={item.label}
+              to={item.to}
+              className="flex items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-ink transition hover:bg-mist"
+            >
+              {item.label}
+              <ArrowUpRight className="h-3.5 w-3.5 text-smoke" />
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -155,48 +240,40 @@ export default function Navbar() {
           scrolled && 'border-line shadow-[0_8px_30px_-24px_rgba(11,11,15,0.5)]'
         )}
       >
-        <div className="shell flex h-16 items-center justify-between gap-4 xl:h-20">
-          <div className="flex items-center gap-2 xl:hidden">
+        <div className="shell flex h-16 items-center justify-between gap-2 sm:gap-3 lg:h-20">
+          <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
-              className="grid h-10 w-10 place-items-center rounded-full text-ink transition hover:bg-mist"
+              className="-ml-1 grid h-9 w-9 shrink-0 place-items-center rounded-full text-ink transition hover:bg-mist sm:h-10 sm:w-10 lg:hidden"
               aria-label="Open menu"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
             >
               <Menu className="h-5 w-5" />
             </button>
+            <Logo compactOnMobile />
           </div>
 
-          <Logo className="shrink-0" />
-
-          <nav className="hidden items-center gap-1 xl:flex" aria-label="Primary">
-            {NAV_ITEMS.map((item) =>
-              item.slugs ? (
-                <div key={item.label} className="group relative">
-                  <Link
-                    to={item.to}
-                    className="inline-flex items-center whitespace-nowrap rounded-full px-3 py-2 text-[13px] font-medium text-ink transition hover:bg-mist"
-                  >
-                    {item.label}
-                  </Link>
-                  <MegaMenu item={item} />
-                </div>
-              ) : (
-                <Link
-                  key={item.label}
-                  to={item.to}
-                  className={cn(
-                    'whitespace-nowrap rounded-full px-3 py-2 text-[13px] font-medium transition hover:bg-mist',
-                    item.label === 'Deals' ? 'text-accent' : 'text-ink'
-                  )}
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
+          <nav className="hidden items-center gap-0.5 lg:flex xl:hidden" aria-label="Primary">
+            {LG_PRIMARY.map((item) => (
+              <NavEntry key={item.label} item={item} />
+            ))}
+            <MoreMenu />
+            {LG_TRAILING.map((item) => (
+              <NavEntry key={item.label} item={item} />
+            ))}
           </nav>
 
-          <div className="flex items-center gap-0.5 sm:gap-1">
+          <nav className="hidden items-center gap-0.5 xl:flex" aria-label="Primary">
+            {NAV_ITEMS.map((item) => (
+              <Fragment key={item.label}>
+                <NavEntry item={item} />
+              </Fragment>
+            ))}
+          </nav>
+
+          <div className="flex shrink-0 items-center gap-0.5 sm:gap-1">
             <IconButton label="Search" onClick={() => setSearchOpen(true)}>
               <Search className="h-[18px] w-[18px]" />
             </IconButton>
@@ -229,7 +306,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => navigate('/shop')}
-              className="ml-1 hidden rounded-full bg-ink px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-coal xl:inline-flex"
+              className="ml-1 hidden rounded-full bg-ink px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-coal lg:inline-flex"
             >
               Shop now
             </button>

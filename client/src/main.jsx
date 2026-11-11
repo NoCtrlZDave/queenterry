@@ -8,6 +8,7 @@ import { CatalogProvider } from './context/CatalogContext';
 import { AuthProvider } from './context/AuthContext';
 import { WishlistProvider } from './context/WishlistContext';
 import { CartProvider } from './context/CartContext';
+import { QuickViewProvider } from './context/QuickViewContext';
 import './index.css';
 
 createRoot(document.getElementById('root')).render(
@@ -19,7 +20,9 @@ createRoot(document.getElementById('root')).render(
             <AuthProvider>
               <WishlistProvider>
                 <CartProvider>
-                  <App />
+                  <QuickViewProvider>
+                    <App />
+                  </QuickViewProvider>
                 </CartProvider>
               </WishlistProvider>
             </AuthProvider>

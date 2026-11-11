@@ -39,7 +39,7 @@ export default function Footer() {
   );
 
   return (
-    <footer className="mt-20 bg-ink pb-[calc(4rem+env(safe-area-inset-bottom))] text-white xl:pb-0">
+    <footer className="mt-20 bg-ink pb-[calc(4rem+env(safe-area-inset-bottom))] text-white lg:pb-0">
       <div className="shell py-14 sm:py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           <div className="sm:col-span-2 lg:col-span-1">

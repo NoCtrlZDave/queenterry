@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import AnnouncementBar from './AnnouncementBar';
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -20,6 +20,7 @@ function ScrollToTop() {
 
 export default function Layout() {
   const { pathname } = useLocation();
+  const reduceMotion = useReducedMotion();
 
   return (
     <div className="flex min-h-dvh-safe flex-col bg-white">
@@ -27,14 +28,20 @@ export default function Layout() {
       <AnnouncementBar />
       <Navbar />
       <main className="flex-1">
-        <motion.div
-          key={pathname}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <Outlet />
-        </motion.div>
+        {reduceMotion ? (
+          <div key={pathname}>
+            <Outlet />
+          </div>
+        ) : (
+          <motion.div
+            key={pathname}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Outlet />
+          </motion.div>
+        )}
       </main>
       <Footer />
       <MobileBottomBar />

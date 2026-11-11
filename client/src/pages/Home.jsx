@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api } from '../lib/api';
+import { categoryImage } from '../lib/categoryImages';
 import { useCatalog } from '../context/CatalogContext';
 import Hero from '../components/home/Hero';
 import TrustStrip from '../components/home/TrustStrip';
@@ -10,7 +11,9 @@ import BrandShowcase from '../components/home/BrandShowcase';
 import WhyShop from '../components/home/WhyShop';
 import Testimonials from '../components/home/Testimonials';
 import Newsletter from '../components/home/Newsletter';
+import EditorialBanner from '../components/home/EditorialBanner';
 import SectionHeader from '../components/ui/SectionHeader';
+import Reveal from '../components/ui/Reveal';
 
 const empty = { featured: [], newArrivals: [], best: [], deals: [] };
 
@@ -48,108 +51,160 @@ export default function Home() {
     };
   }, []);
 
+  const spotlight = data.featured[0];
+  const phoneVisual = categoryImage('smartphones');
+  const audioVisual = categoryImage('speakers');
+
   return (
     <>
       <Hero featured={data.featured} />
       <TrustStrip />
 
-      <section className="shell py-14 sm:py-16">
-        <SectionHeader
-          kicker="Shop by category"
-          title="Whatever you need, find it here."
-          description="From flagship smartphones to the accessories that complete your setup — browse a focused range built around everyday technology."
-          actionLabel="All products"
-          actionTo="/shop"
-        />
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
-          {(catalogLoading ? Array.from({ length: 8 }) : categories).map((category, index) =>
-            category ? (
-              <CategoryCard key={category._id} category={category} />
-            ) : (
-              <div key={index} className="skeleton aspect-[5/4] rounded-3xl" />
-            )
-          )}
-        </div>
-      </section>
-
-      <section className="shell py-12 sm:py-14">
-        <SectionHeader
-          kicker="Featured this week"
-          title="Considered picks for your next upgrade."
-          actionLabel="Shop featured"
-          actionTo="/shop?featured=true"
-        />
-        <div className="mt-8">
-          <ProductRail products={data.featured} loading={loading} />
-        </div>
-      </section>
-
-      <section className="bg-gradient-to-b from-accent-50/80 to-white py-14 sm:py-16">
-        <div className="shell">
+      <Reveal>
+        <section className="shell py-14 sm:py-16">
           <SectionHeader
-            kicker="Just landed"
-            title="New arrivals, ready to explore."
-            description="The latest devices and accessories to reach the Queen Terry catalogue."
-            actionLabel="Shop new arrivals"
-            actionTo="/shop?sort=newest"
+            kicker="Shop by category"
+            title="Whatever you need, find it here."
+            description="From flagship smartphones to the accessories that complete your setup — browse a focused range built around everyday technology."
+            actionLabel="All products"
+            actionTo="/shop"
+          />
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
+            {(catalogLoading ? Array.from({ length: 8 }) : categories).map((category, index) =>
+              category ? (
+                <CategoryCard key={category._id} category={category} />
+              ) : (
+                <div key={index} className="skeleton aspect-[5/4] rounded-3xl" />
+              )
+            )}
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="shell pb-4 sm:pb-6">
+          <EditorialBanner
+            tone="dark"
+            eyebrow="Spotlight"
+            title="Flagship technology, hand-picked."
+            text="Explore premium smartphones, laptops and audio chosen for real everyday use — with every order confirmed personally on WhatsApp."
+            ctaLabel="Shop smartphones"
+            to="/shop?category=smartphones"
+            product={spotlight}
+            src={phoneVisual?.src}
+            alt={phoneVisual?.alt}
+            position={phoneVisual?.position}
+          />
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="shell py-12 sm:py-14">
+          <SectionHeader
+            kicker="Featured this week"
+            title="Considered picks for your next upgrade."
+            actionLabel="Shop featured"
+            actionTo="/shop?featured=true"
           />
           <div className="mt-8">
-            <ProductRail products={data.newArrivals} loading={loading} />
+            <ProductRail products={data.featured} loading={loading} />
           </div>
-        </div>
-      </section>
+        </section>
+      </Reveal>
 
-      <section className="shell py-14 sm:py-16">
-        <SectionHeader
-          kicker="Best sellers"
-          title="What customers are choosing."
-          description="Popular devices and essentials that keep earning their place."
-          actionLabel="Shop best sellers"
-          actionTo="/shop?sort=best_selling"
-        />
-        <div className="mt-8">
-          <ProductRail products={data.best} loading={loading} />
-        </div>
-      </section>
+      <Reveal>
+        <section className="bg-gradient-to-b from-accent-50/80 to-white py-14 sm:py-16">
+          <div className="shell">
+            <SectionHeader
+              kicker="Just landed"
+              title="New arrivals, ready to explore."
+              description="The latest devices and accessories to reach the Queen Terry catalogue."
+              actionLabel="Shop new arrivals"
+              actionTo="/shop?sort=newest"
+            />
+            <div className="mt-8">
+              <ProductRail products={data.newArrivals} loading={loading} />
+            </div>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="shell py-14 sm:py-16">
+          <SectionHeader
+            kicker="Best sellers"
+            title="What customers are choosing."
+            description="Popular devices and essentials that keep earning their place."
+            actionLabel="Shop best sellers"
+            actionTo="/shop?sort=best_selling"
+          />
+          <div className="mt-8">
+            <ProductRail products={data.best} loading={loading} />
+          </div>
+        </section>
+      </Reveal>
 
       <DealsSection deals={data.deals} loading={loading} />
 
-      <section className="shell py-14 sm:py-16">
-        <SectionHeader
-          kicker="Featured brands"
-          title="Technology from names you recognise."
-          description="We stock a curated selection across phones, computing, audio and accessories. Brand availability is managed from our store dashboard."
-          actionLabel="Shop all products"
-          actionTo="/shop"
-        />
-        <div className="mt-8">
-          <BrandShowcase brands={brands} />
-        </div>
-      </section>
+      <Reveal>
+        <section className="shell py-12 sm:py-14">
+          <EditorialBanner
+            tone="accent"
+            flip
+            eyebrow="Sound & vision"
+            title="Audio and wearables that keep up."
+            text="From noise-cancelling headphones to smartwatches and speakers — complete your setup with accessories that match your devices."
+            ctaLabel="Shop audio"
+            to="/shop?categories=earbuds,headphones,speakers"
+            src={audioVisual?.src}
+            alt={audioVisual?.alt}
+            position={audioVisual?.position}
+          />
+        </section>
+      </Reveal>
 
-      <section className="bg-mist/60 py-14 sm:py-16">
-        <div className="shell">
+      <Reveal>
+        <section className="shell py-14 sm:py-16">
           <SectionHeader
-            kicker="Why Queen Terry"
-            title="A simpler way to buy technology."
-            description="No walls of noise. Just clear products, honest information and a personal ordering experience."
+            kicker="Featured brands"
+            title="Technology from names you recognise."
+            description="We stock a curated selection across phones, computing, audio and accessories. Brand availability is managed from our store dashboard."
+            actionLabel="Shop all products"
+            actionTo="/shop"
           />
           <div className="mt-8">
-            <WhyShop />
+            <BrandShowcase brands={brands} />
           </div>
-        </div>
-      </section>
+        </section>
+      </Reveal>
 
-      <section className="shell py-14 sm:py-16">
-        <SectionHeader
-          kicker="Customer feedback"
-          title="Built around a better experience."
-          description="Early placeholder reviews are shown below until verified customer testimonials are supplied."
-        />
-        <div className="mt-8">
-          <Testimonials />
-        </div>
-      </section>
+      <Reveal>
+        <section className="bg-mist/60 py-14 sm:py-16">
+          <div className="shell">
+            <SectionHeader
+              kicker="Why Queen Terry"
+              title="A simpler way to buy technology."
+              description="No walls of noise. Just clear products, honest information and a personal ordering experience."
+            />
+            <div className="mt-8">
+              <WhyShop />
+            </div>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="shell py-14 sm:py-16">
+          <SectionHeader
+            kicker="Customer feedback"
+            title="Built around a better experience."
+            description="Early placeholder reviews are shown below until verified customer testimonials are supplied."
+          />
+          <div className="mt-8">
+            <Testimonials />
+          </div>
+        </section>
+      </Reveal>
 
       <div className="pb-4">
         <Newsletter />

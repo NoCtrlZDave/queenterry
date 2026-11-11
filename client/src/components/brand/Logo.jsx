@@ -13,26 +13,31 @@ export function CrownMark({ className = '' }) {
   );
 }
 
-export default function Logo({ variant = 'dark', className = '', compact = false }) {
+export default function Logo({
+  variant = 'dark',
+  className = '',
+  compact = false,
+  compactOnMobile = false,
+}) {
   const isLight = variant === 'light';
   return (
     <Link
       to="/"
       aria-label="Queen Terry home"
-      className={cn('group inline-flex items-center gap-2.5', className)}
+      className={cn('group inline-flex min-w-0 items-center gap-2 sm:gap-2.5', className)}
     >
       <span
         className={cn(
-          'grid h-10 w-10 shrink-0 place-items-center rounded-xl transition-colors',
+          'grid h-9 w-9 shrink-0 place-items-center rounded-xl transition-colors sm:h-10 sm:w-10',
           isLight ? 'bg-white text-accent' : 'bg-ink text-white'
         )}
       >
-        <CrownMark className="h-6 w-6" />
+        <CrownMark className="h-5 w-5 sm:h-6 sm:w-6" />
       </span>
-      <span className="leading-none">
+      <span className="min-w-0 leading-none">
         <span
           className={cn(
-            'block font-display text-[15px] font-extrabold uppercase tracking-[0.2em]',
+            'block truncate font-display text-[12px] font-extrabold uppercase tracking-[0.12em] sm:text-[15px] sm:tracking-[0.2em]',
             isLight ? 'text-white' : 'text-ink'
           )}
         >
@@ -41,7 +46,8 @@ export default function Logo({ variant = 'dark', className = '', compact = false
         {!compact && (
           <span
             className={cn(
-              'mt-1 block text-[9px] font-semibold uppercase tracking-[0.32em]',
+              'mt-1 text-[9px] font-semibold uppercase tracking-[0.32em]',
+              compactOnMobile ? 'hidden sm:block' : 'block',
               isLight ? 'text-white/60' : 'text-smoke'
             )}
           >

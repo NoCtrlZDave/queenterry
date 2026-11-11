@@ -35,11 +35,17 @@ export default function MobileMenu({ open, onClose, onSearch }) {
 
   useEffect(() => {
     if (!open) return undefined;
+    const desktop = window.matchMedia('(min-width: 1024px)');
+    const closeOnDesktop = (event) => {
+      if (event.matches) onClose?.();
+    };
+    desktop.addEventListener('change', closeOnDesktop);
     document.body.style.overflow = 'hidden';
     return () => {
+      desktop.removeEventListener('change', closeOnDesktop);
       document.body.style.overflow = '';
     };
-  }, [open]);
+  }, [open, onClose]);
 
   const linkClass =
     'flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-ink transition hover:bg-mist';
@@ -51,7 +57,7 @@ export default function MobileMenu({ open, onClose, onSearch }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[85] xl:hidden"
+          className="fixed inset-0 z-[85] lg:hidden"
         >
           <div className="absolute inset-0 bg-ink/45 backdrop-blur-sm" onClick={onClose} />
           <motion.aside
@@ -59,6 +65,10 @@ export default function MobileMenu({ open, onClose, onSearch }) {
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            id="mobile-menu"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site menu"
             className="h-dvh-safe relative flex w-[88%] max-w-sm flex-col bg-white pl-[env(safe-area-inset-left)]"
           >
             <div className="flex items-center justify-between border-b border-line px-5 py-4">
